@@ -11,7 +11,7 @@ const Nav = () => {
       <p>wizkid</p>
       </Link>
       <Link to={"/service"}>
-    <p>oxlade</p>
+    <p>Ibro omo iya </p>
       </Link>
     <p>davido</p>
     </div>

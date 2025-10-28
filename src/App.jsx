@@ -5,6 +5,8 @@ import CardList from './components/props';
 import Footer from './components/footer';
 import Home from './pages/home';
 import ServicePage from './pages/servicePage';
+import Profile from './pages/profile';
+import Cart from './pages/Cart';
 const App = () => {
   return (
     
@@ -16,7 +18,9 @@ const App = () => {
           <Route path='/card' element={<CardList />} />
           <Route path='/' element={<Home />} />
           <Route  path='/service' element={<ServicePage />} /> 
-        </Routes>
+                    <Route path='/profile/:name' element={<Profile />} />
+                    <Route path='/cart' element={<Cart />} />
+                  </Routes>
        </div>
        <Footer />
       </Router>

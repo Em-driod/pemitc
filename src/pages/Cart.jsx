@@ -4,21 +4,31 @@ import { CartContext } from '../CartContext';
 const Cart = () => {
   const { cart } = useContext(CartContext);
 
+  const getTotal = () => {
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+  };
+
   return (
     <div style={{ padding: '20px' }}>
-      <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Your Cart</h2>
+      <h1>Your Cart</h1>
       {cart.length === 0 ? (
-        <p style={{ textAlign: 'center' }}>Your cart is empty.</p>
+        <p>Your cart is empty.</p>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px' }}>
+        <div>
           {cart.map((item, index) => (
-            <div key={index} style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '16px', boxShadow: '0 4px 8px rgba(0,0,0,0.1)' }}>
-              {item.imageUrl && <img src={item.imageUrl} alt={item.title} style={{ width: '100%', height: '120px', objectFit: 'cover', borderRadius: '4px' }} />}
-              <h3 style={{ marginTop: '10px' }}>{item.title}</h3>
-              <p>{item.description}</p>
-              <p>Quantity: {item.quantity}</p>
+            <div key={index} style={{ borderBottom: '1px solid #ccc', padding: '10px 0', display: 'flex', justifyContent: 'space-between' }}>
+              <div>
+                <h3>{item.name}</h3>
+                <p>${item.price.toFixed(2)}</p>
+              </div>
+              <div>
+                <p>Quantity: {item.quantity}</p>
+              </div>
             </div>
           ))}
+          <div style={{ marginTop: '20px', textAlign: 'right', fontWeight: 'bold' }}>
+            <h3>Total: ${getTotal()}</h3>
+          </div>
         </div>
       )}
     </div>
